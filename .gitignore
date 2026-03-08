@@ -1,0 +1,112 @@
+# =========================
+
+# .NET / Visual Studio
+
+# =========================
+
+## Build results
+
+bin/
+obj/
+out/
+build/
+artifacts/
+
+## Visual Studio
+
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Rider
+
+.idea/
+
+## VS Code
+
+.vscode/
+
+## Logs
+
+*.log
+
+## OS files
+
+.DS_Store
+Thumbs.db
+
+## NuGet
+
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+*.nuget.props
+*.nuget.targets
+
+## ASP.NET Core
+
+appsettings.Development.json
+appsettings.Local.json
+
+## Secrets
+
+secrets.json
+*.pfx
+*.key
+
+## Entity Framework
+
+*.db
+*.sqlite
+*.mdf
+*.ldf
+
+## Publish output
+
+publish/
+wwwroot/dist/
+
+## Node (si usas Angular/React)
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+## Test Results
+
+TestResults/
+
+## Coverage
+
+coverage/
+*.coverage
+*.coveragexml
+
+## Temporary files
+
+*.tmp
+*.temp
+
+## Resharper
+
+_ReSharper*/
+*.DotSettings.user
+
+## Backup
+
+*.bak
+
+## Windows Installer
+
+*.msi
+*.msix
+*.msm
+*.msp
+
+## Docker
+
+docker-compose.override.yml
