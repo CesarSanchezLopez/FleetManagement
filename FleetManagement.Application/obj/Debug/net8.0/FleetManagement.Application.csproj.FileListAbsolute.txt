@@ -28,3 +28,4 @@ C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Application\obj\Debug
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Application\obj\Debug\net8.0\refint\FleetManagement.Application.dll
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Application\obj\Debug\net8.0\FleetManagement.Application.pdb
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Application\obj\Debug\net8.0\ref\FleetManagement.Application.dll
+C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Application\obj\Debug\net8.0\FleetManagement.Application.sourcelink.json

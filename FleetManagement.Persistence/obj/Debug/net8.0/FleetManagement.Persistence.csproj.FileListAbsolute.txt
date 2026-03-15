@@ -36,3 +36,4 @@ C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Persistence\obj\Debug
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Persistence\obj\Debug\net8.0\FleetManagement.Persistence.pdb
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Persistence\obj\Debug\net8.0\FleetManagement.Persistence.genruntimeconfig.cache
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Persistence\obj\Debug\net8.0\ref\FleetManagement.Persistence.dll
+C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Persistence\obj\Debug\net8.0\FleetManagement.Persistence.sourcelink.json

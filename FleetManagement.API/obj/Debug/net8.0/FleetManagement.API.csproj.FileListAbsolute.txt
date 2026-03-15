@@ -302,3 +302,4 @@ C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.API\obj\Debug\net8.0\
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.API\obj\Debug\net8.0\FleetManagement.API.pdb
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.API\obj\Debug\net8.0\FleetManagement.API.genruntimeconfig.cache
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.API\obj\Debug\net8.0\ref\FleetManagement.API.dll
+C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.API\obj\Debug\net8.0\FleetManagement.API.sourcelink.json
