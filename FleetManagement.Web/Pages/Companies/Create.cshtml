@@ -1,0 +1,39 @@
+﻿using FleetManagement.Domain.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Net.Http.Json;
+
+namespace FleetManagement.Web.Pages.Companies;
+
+public class CreateModel : PageModel
+{
+    private readonly HttpClient _httpClient;
+
+    [BindProperty]
+    public Company Company { get; set; } = new();
+
+    public CreateModel(IHttpClientFactory factory)
+    {
+        _httpClient = factory.CreateClient();
+    }
+
+    public void OnGet()
+    {
+    }
+
+    public async Task<IActionResult>
+    OnPostAsync()
+    {
+    Company.Id = Guid.NewGuid();
+    Company.CreatedAt = DateTime.UtcNow;
+
+    var response = await _httpClient.PostAsJsonAsync(
+    "https://localhost:7200/api/company",
+    Company);
+
+    if (response.IsSuccessStatusCode)
+    return RedirectToPage("Index");
+
+    return Page();
+    }
+    }

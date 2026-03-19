@@ -1,14 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "MuBwnIlTroA=",
+  "dgSpecHash": "Dqy/mP9V42c=",
   "success": true,
   "projectFilePath": "C:\\Fuentes\\FleetManagement\\FleetManagement\\FleetManagement.Application\\FleetManagement.Application.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\siste\\.nuget\\packages\\automapper\\16.1.1\\automapper.16.1.1.nupkg.sha512",
     "C:\\Users\\siste\\.nuget\\packages\\mediatr\\14.0.0\\mediatr.14.0.0.nupkg.sha512",
     "C:\\Users\\siste\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\siste\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.1.0\\mediatr.extensions.microsoft.dependencyinjection.11.1.0.nupkg.sha512",
     "C:\\Users\\siste\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.0\\microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg.sha512",
     "C:\\Users\\siste\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.0\\microsoft.extensions.logging.abstractions.10.0.0.nupkg.sha512",
+    "C:\\Users\\siste\\.nuget\\packages\\microsoft.extensions.options\\10.0.0\\microsoft.extensions.options.10.0.0.nupkg.sha512",
+    "C:\\Users\\siste\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.0\\microsoft.extensions.primitives.10.0.0.nupkg.sha512",
     "C:\\Users\\siste\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.14.0\\microsoft.identitymodel.abstractions.8.14.0.nupkg.sha512",
     "C:\\Users\\siste\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.14.0\\microsoft.identitymodel.jsonwebtokens.8.14.0.nupkg.sha512",
     "C:\\Users\\siste\\.nuget\\packages\\microsoft.identitymodel.logging\\8.14.0\\microsoft.identitymodel.logging.8.14.0.nupkg.sha512",

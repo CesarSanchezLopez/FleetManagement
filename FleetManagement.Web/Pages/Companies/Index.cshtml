@@ -1,0 +1,32 @@
+﻿@page
+@model FleetManagement.Web.Pages.Companies.IndexModel
+
+<h2>Companies</h2>
+
+<a asp-page="Create">Create Company</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>NIT</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var company in Model.Companies)
+        {
+            <tr>
+                <td>@company.Name</td>
+                <td>@company.Nit</td>
+                <td>@company.Address</td>
+                <td>
+                    <a asp-page="Edit" asp-route-id="@company.Id">Edit</a> |
+                    <a asp-page="Delete" asp-route-id="@company.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

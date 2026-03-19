@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetManagement.Domain", "F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetManagement.Persistence", "FleetManagement.Persistence\FleetManagement.Persistence.csproj", "{53F21D6E-5C32-93D0-D53D-96E5E0F82973}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FleetManagement.Web", "FleetManagement.Web\FleetManagement.Web.csproj", "{32CF5581-514F-4BC1-8FD5-CCA4B4E5A53E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{53F21D6E-5C32-93D0-D53D-96E5E0F82973}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53F21D6E-5C32-93D0-D53D-96E5E0F82973}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53F21D6E-5C32-93D0-D53D-96E5E0F82973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32CF5581-514F-4BC1-8FD5-CCA4B4E5A53E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32CF5581-514F-4BC1-8FD5-CCA4B4E5A53E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32CF5581-514F-4BC1-8FD5-CCA4B4E5A53E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32CF5581-514F-4BC1-8FD5-CCA4B4E5A53E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

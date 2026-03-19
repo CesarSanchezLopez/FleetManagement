@@ -1,14 +1,3 @@
-C:\Fuentes\FleetManagement\FleetManagement\src\FleetManagement.Domain\bin\Debug\net8.0\FleetManagement.Domain.deps.json
-C:\Fuentes\FleetManagement\FleetManagement\src\FleetManagement.Domain\bin\Debug\net8.0\FleetManagement.Domain.dll
-C:\Fuentes\FleetManagement\FleetManagement\src\FleetManagement.Domain\bin\Debug\net8.0\FleetManagement.Domain.pdb
-C:\Fuentes\FleetManagement\FleetManagement\src\FleetManagement.Domain\obj\Debug\net8.0\FleetManagement.Domain.GeneratedMSBuildEditorConfig.editorconfig
-C:\Fuentes\FleetManagement\FleetManagement\src\FleetManagement.Domain\obj\Debug\net8.0\FleetManagement.Domain.AssemblyInfoInputs.cache
-C:\Fuentes\FleetManagement\FleetManagement\src\FleetManagement.Domain\obj\Debug\net8.0\FleetManagement.Domain.AssemblyInfo.cs
-C:\Fuentes\FleetManagement\FleetManagement\src\FleetManagement.Domain\obj\Debug\net8.0\FleetManagement.Domain.csproj.CoreCompileInputs.cache
-C:\Fuentes\FleetManagement\FleetManagement\src\FleetManagement.Domain\obj\Debug\net8.0\FleetManagement.Domain.dll
-C:\Fuentes\FleetManagement\FleetManagement\src\FleetManagement.Domain\obj\Debug\net8.0\refint\FleetManagement.Domain.dll
-C:\Fuentes\FleetManagement\FleetManagement\src\FleetManagement.Domain\obj\Debug\net8.0\FleetManagement.Domain.pdb
-C:\Fuentes\FleetManagement\FleetManagement\src\FleetManagement.Domain\obj\Debug\net8.0\ref\FleetManagement.Domain.dll
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Domain\bin\Debug\net8.0\FleetManagement.Domain.deps.json
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Domain\bin\Debug\net8.0\FleetManagement.Domain.dll
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Domain\bin\Debug\net8.0\FleetManagement.Domain.pdb
@@ -16,8 +5,8 @@ C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Domain\obj\Debug\net8
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Domain\obj\Debug\net8.0\FleetManagement.Domain.AssemblyInfoInputs.cache
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Domain\obj\Debug\net8.0\FleetManagement.Domain.AssemblyInfo.cs
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Domain\obj\Debug\net8.0\FleetManagement.Domain.csproj.CoreCompileInputs.cache
+C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Domain\obj\Debug\net8.0\FleetManagement.Domain.sourcelink.json
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Domain\obj\Debug\net8.0\FleetManagement.Domain.dll
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Domain\obj\Debug\net8.0\refint\FleetManagement.Domain.dll
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Domain\obj\Debug\net8.0\FleetManagement.Domain.pdb
 C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Domain\obj\Debug\net8.0\ref\FleetManagement.Domain.dll
-C:\Fuentes\FleetManagement\FleetManagement\FleetManagement.Domain\obj\Debug\net8.0\FleetManagement.Domain.sourcelink.json

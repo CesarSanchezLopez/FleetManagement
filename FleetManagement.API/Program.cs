@@ -1,4 +1,5 @@
 using FleetManagement.Application.Interfaces;
+using FleetManagement.Application.Mappings;
 using FleetManagement.Application.Services;
 using FleetManagement.Persistence;
 using FleetManagement.Persistence.Repositories;
@@ -13,6 +14,8 @@ var configuration = builder.Configuration;
 
 // Servicios
 builder.Services.AddControllers();
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
 
 // Registrar DbContext (ajusta el proveedor/connection string según tu proyecto)
 var connectionString = configuration.GetConnectionString("DefaultConnection");
