@@ -1,18 +1,10 @@
 ﻿using FleetManagement.Application.DTOs.Companies;
-using FleetManagement.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
-namespace FleetManagement.Application.Interfaces
+public interface ICompanyService
 {
-    public interface ICompanyService
-    {
-        Task<List<Company>> GetAllAsync();
-        Task<Company?> GetByIdAsync(Guid id);
-        Task CreateAsync(Company company);
-        Task UpdateAsync(Company company);
-        Task DeleteAsync(Guid id);
-        Task CreateAsync(CompanyDto dto);
-    }
+    Task<List<CompanyDto>> GetAllAsync();
+    Task<CompanyDto?> GetByIdAsync(Guid id);
+    Task<CompanyDto> CreateAsync(CompanyDto dto);
+    Task UpdateAsync(CompanyDto dto); // ya no necesitas pasar Id aparte
+    Task DeleteAsync(Guid id);
 }

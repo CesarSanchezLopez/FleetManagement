@@ -1,5 +1,4 @@
 using FleetManagement.Application.Interfaces;
-using FleetManagement.Application.Mappings;
 using FleetManagement.Application.Services;
 using FleetManagement.Persistence;
 using FleetManagement.Persistence.Repositories;
@@ -15,7 +14,7 @@ var configuration = builder.Configuration;
 // Servicios
 builder.Services.AddControllers();
 
-builder.Services.AddAutoMapper(typeof(MappingProfile));
+MapsterConfig.RegisterMappings();
 
 // Registrar DbContext (ajusta el proveedor/connection string según tu proyecto)
 var connectionString = configuration.GetConnectionString("DefaultConnection");
@@ -33,11 +32,6 @@ builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<IDriverService, DriverService>();
 builder.Services.AddScoped<IDriverRepository, DriverRepository>();
 
-//builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
-//builder.Services.AddScoped<IMaintenanceRepository, MaintenanceRepository>();
-//builder.Services.AddScoped<IFuelRecordRepository, FuelRecordRepository>();
-//builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
-//builder.Services.AddScoped<IDriverRepository, DriverRepository>();
 
 // Swagger / OpenAPI
 builder.Services.AddEndpointsApiExplorer();

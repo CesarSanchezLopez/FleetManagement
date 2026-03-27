@@ -1,0 +1,39 @@
+﻿@page
+@model FleetManagement.Web.Pages.Vehicles.CreateModel
+@{
+    ViewData["Title"] = "Nuevo Vehículo";
+}
+
+<div class="container mt-4">
+    <h2>+ Nuevo Vehículo</h2>
+
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label">Matrícula</label>
+            <input asp-for="Vehicle.LicensePlate" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Marca</label>
+            <input asp-for="Vehicle.Brand" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Modelo</label>
+            <input asp-for="Vehicle.Model" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Año</label>
+            <input asp-for="Vehicle.Year" type="number" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">VIN</label>
+            <input asp-for="Vehicle.VIN" class="form-control" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Empresa (Id)</label>
+            <input asp-for="Vehicle.CompanyId" class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-primary">Crear</button>
+        <a asp-page="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

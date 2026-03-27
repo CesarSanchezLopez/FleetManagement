@@ -1,5 +1,5 @@
-﻿using FleetManagement.Application.Interfaces;
-using FleetManagement.Domain.Entities;
+﻿using FleetManagement.Application.DTOs.Companies;
+using FleetManagement.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FleetManagement.API.Controllers;
@@ -26,27 +26,22 @@ public class CompanyController : ControllerBase
     public async Task<IActionResult> GetById(Guid id)
     {
         var company = await _companyService.GetByIdAsync(id);
-
-        if (company == null)
-            return NotFound();
-
+        if (company == null) return NotFound();
         return Ok(company);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Company company)
+    public async Task<IActionResult> Create([FromBody] CompanyDto dto)
     {
-        await _companyService.CreateAsync(company);
-        return Ok();
+        var created = await _companyService.CreateAsync(dto);
+        return CreatedAtAction(nameof(GetById), new { id = created.Id }, created);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(Guid id, [FromBody] Company company)
+    public async Task<IActionResult> Update(Guid id, [FromBody] CompanyDto dto)
     {
-        if (id != company.Id)
-            return BadRequest();
-
-        await _companyService.UpdateAsync(company);
+        dto.Id = id; // aseguramos que el Id venga del endpoint
+        await _companyService.UpdateAsync(dto);
         return NoContent();
     }
 

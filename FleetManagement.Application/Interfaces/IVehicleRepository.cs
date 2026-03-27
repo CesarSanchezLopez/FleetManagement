@@ -1,9 +1,10 @@
 ﻿using FleetManagement.Domain.Entities;
 
-namespace FleetManagement.Application.Interfaces;
-
 public interface IVehicleRepository
 {
     Task AddAsync(Vehicle vehicle);
+    Task UpdateAsync(Vehicle vehicle);  // ← este es obligatorio
+    Task DeleteAsync(Guid id);
     Task<Vehicle?> GetByIdAsync(Guid id);
+    Task<List<Vehicle>> GetAllAsync();
 }

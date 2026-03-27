@@ -25,17 +25,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Company"
+                "$ref": "#/components/schemas/CompanyDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Company"
+                "$ref": "#/components/schemas/CompanyDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Company"
+                "$ref": "#/components/schemas/CompanyDto"
               }
             }
           }
@@ -88,17 +88,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Company"
+                "$ref": "#/components/schemas/CompanyDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Company"
+                "$ref": "#/components/schemas/CompanyDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Company"
+                "$ref": "#/components/schemas/CompanyDto"
               }
             }
           }
@@ -131,10 +131,10 @@
         }
       }
     },
-    "/api/Driver": {
+    "/api/Drivers": {
       "get": {
         "tags": [
-          "Driver"
+          "Drivers"
         ],
         "responses": {
           "200": {
@@ -144,23 +144,23 @@
       },
       "post": {
         "tags": [
-          "Driver"
+          "Drivers"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Driver"
+                "$ref": "#/components/schemas/DriverDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Driver"
+                "$ref": "#/components/schemas/DriverDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Driver"
+                "$ref": "#/components/schemas/DriverDto"
               }
             }
           }
@@ -172,10 +172,10 @@
         }
       }
     },
-    "/api/Driver/{id}": {
+    "/api/Drivers/{id}": {
       "get": {
         "tags": [
-          "Driver"
+          "Drivers"
         ],
         "parameters": [
           {
@@ -196,7 +196,7 @@
       },
       "put": {
         "tags": [
-          "Driver"
+          "Drivers"
         ],
         "parameters": [
           {
@@ -213,17 +213,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Driver"
+                "$ref": "#/components/schemas/DriverDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Driver"
+                "$ref": "#/components/schemas/DriverDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Driver"
+                "$ref": "#/components/schemas/DriverDto"
               }
             }
           }
@@ -236,7 +236,132 @@
       },
       "delete": {
         "tags": [
-          "Driver"
+          "Drivers"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Vehicles": {
+      "get": {
+        "tags": [
+          "Vehicles"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Vehicles"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Vehicles/{id}": {
+      "get": {
+        "tags": [
+          "Vehicles"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Vehicles"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleDto"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleDto"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Vehicles"
         ],
         "parameters": [
           {
@@ -259,12 +384,13 @@
   },
   "components": {
     "schemas": {
-      "Company": {
+      "CompanyDto": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "nullable": true
           },
           "name": {
             "type": "string",
@@ -280,26 +406,13 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
-          },
-          "vehicles": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Vehicle"
-            },
-            "nullable": true
-          },
-          "drivers": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Driver"
-            },
+            "format": "date-time",
             "nullable": true
           }
         },
         "additionalProperties": false
       },
-      "Driver": {
+      "DriverDto": {
         "type": "object",
         "properties": {
           "id": {
@@ -308,10 +421,12 @@
           },
           "companyId": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "nullable": true
           },
-          "company": {
-            "$ref": "#/components/schemas/Company"
+          "companyName": {
+            "type": "string",
+            "nullable": true
           },
           "firstName": {
             "type": "string",
@@ -328,98 +443,25 @@
           "licenseExpiration": {
             "type": "string",
             "format": "date-time"
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
           }
         },
         "additionalProperties": false
       },
-      "FuelRecord": {
+      "VehicleDto": {
         "type": "object",
         "properties": {
           "id": {
             "type": "string",
-            "format": "uuid"
-          },
-          "vehicleId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "vehicle": {
-            "$ref": "#/components/schemas/Vehicle"
-          },
-          "liters": {
-            "type": "number",
-            "format": "double"
-          },
-          "cost": {
-            "type": "number",
-            "format": "double"
-          },
-          "odometer": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false
-      },
-      "Maintenance": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "vehicleId": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "vehicle": {
-            "$ref": "#/components/schemas/Vehicle"
-          },
-          "type": {
-            "type": "string",
+            "format": "uuid",
             "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "cost": {
-            "type": "number",
-            "format": "double"
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "nextDueDate": {
-            "type": "string",
-            "format": "date-time",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Vehicle": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
           },
           "companyId": {
             "type": "string",
             "format": "uuid"
           },
-          "company": {
-            "$ref": "#/components/schemas/Company"
+          "companyName": {
+            "type": "string",
+            "nullable": true
           },
           "licensePlate": {
             "type": "string",
@@ -444,20 +486,6 @@
           "createdAt": {
             "type": "string",
             "format": "date-time"
-          },
-          "maintenances": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Maintenance"
-            },
-            "nullable": true
-          },
-          "fuelRecords": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/FuelRecord"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false

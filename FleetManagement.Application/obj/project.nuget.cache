@@ -1,35 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Dqy/mP9V42c=",
+  "dgSpecHash": "Y9OeuyOPCbg=",
   "success": true,
   "projectFilePath": "C:\\Fuentes\\FleetManagement\\FleetManagement\\FleetManagement.Application\\FleetManagement.Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\siste\\.nuget\\packages\\automapper\\16.1.1\\automapper.16.1.1.nupkg.sha512",
-    "C:\\Users\\siste\\.nuget\\packages\\mediatr\\14.0.0\\mediatr.14.0.0.nupkg.sha512",
-    "C:\\Users\\siste\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
-    "C:\\Users\\siste\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\11.1.0\\mediatr.extensions.microsoft.dependencyinjection.11.1.0.nupkg.sha512",
-    "C:\\Users\\siste\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.0\\microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg.sha512",
-    "C:\\Users\\siste\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\10.0.0\\microsoft.extensions.logging.abstractions.10.0.0.nupkg.sha512",
-    "C:\\Users\\siste\\.nuget\\packages\\microsoft.extensions.options\\10.0.0\\microsoft.extensions.options.10.0.0.nupkg.sha512",
-    "C:\\Users\\siste\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.0\\microsoft.extensions.primitives.10.0.0.nupkg.sha512",
-    "C:\\Users\\siste\\.nuget\\packages\\microsoft.identitymodel.abstractions\\8.14.0\\microsoft.identitymodel.abstractions.8.14.0.nupkg.sha512",
-    "C:\\Users\\siste\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\8.14.0\\microsoft.identitymodel.jsonwebtokens.8.14.0.nupkg.sha512",
-    "C:\\Users\\siste\\.nuget\\packages\\microsoft.identitymodel.logging\\8.14.0\\microsoft.identitymodel.logging.8.14.0.nupkg.sha512",
-    "C:\\Users\\siste\\.nuget\\packages\\microsoft.identitymodel.tokens\\8.14.0\\microsoft.identitymodel.tokens.8.14.0.nupkg.sha512",
-    "C:\\Users\\siste\\.nuget\\packages\\system.diagnostics.diagnosticsource\\10.0.0\\system.diagnostics.diagnosticsource.10.0.0.nupkg.sha512"
+    "C:\\Users\\siste\\.nuget\\packages\\mapster\\10.0.3\\mapster.10.0.3.nupkg.sha512",
+    "C:\\Users\\siste\\.nuget\\packages\\mapster.core\\10.0.1\\mapster.core.10.0.1.nupkg.sha512",
+    "C:\\Users\\siste\\.nuget\\packages\\mapster.dependencyinjection\\10.0.0\\mapster.dependencyinjection.10.0.0.nupkg.sha512",
+    "C:\\Users\\siste\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.0\\microsoft.extensions.dependencyinjection.abstractions.9.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1608",
-      "level": "Warning",
-      "message": "Se detectó una versión del paquete fuera de la restricción de dependencia: MediatR.Extensions.Microsoft.DependencyInjection 11.1.0 requiere MediatR (>= 11.0.0 && < 12.0.0), pero la versión MediatR 14.0.0 ya se resolvió.",
-      "projectPath": "C:\\Fuentes\\FleetManagement\\FleetManagement\\FleetManagement.Application\\FleetManagement.Application.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\Fuentes\\FleetManagement\\FleetManagement\\FleetManagement.Application\\FleetManagement.Application.csproj",
-      "libraryId": "MediatR",
-      "targetGraphs": [
-        "net8.0"
-      ]
-    }
-  ]
+  "logs": []
 }

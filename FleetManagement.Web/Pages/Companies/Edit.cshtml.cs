@@ -1,36 +1,42 @@
-using FleetManagement.Domain.Entities;
+using FleetManagement.Application.DTOs.Companies;
+using FleetManagement.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Net.Http.Json;
 
 namespace FleetManagement.Web.Pages.Companies;
 
 public class EditModel : PageModel
 {
-    private readonly HttpClient _httpClient;
+    private readonly CompaniesService _companiesService;
+    public EditModel(CompaniesService companiesService)
+        => _companiesService = companiesService;
 
     [BindProperty]
-    public Company Company { get; set; } = new();
+    public CompanyDto Company { get; set; } = new CompanyDto();
 
-    public EditModel(IHttpClientFactory factory)
+    public async Task<IActionResult> OnGetAsync(Guid id)
     {
-        _httpClient = factory.CreateClient();
-    }
+        var company = await _companiesService.GetByIdAsync(id);
 
-    public async Task OnGetAsync(Guid id)
-    {
-        var result = await _httpClient.GetFromJsonAsync<Company>(
-            $"https://localhost:7200/api/company/{id}");
+        if (company == null)
+            return RedirectToPage("Index");
 
-        if (result != null)
-            Company = result;
+        Company = company;
+        return Page();
     }
 
     public async Task<IActionResult> OnPostAsync()
     {
-        await _httpClient.PutAsJsonAsync(
-            $"https://localhost:7200/api/company/{Company.Id}",
-            Company);
+        if (!ModelState.IsValid)
+            return Page();
+
+        var success = await _companiesService.UpdateAsync(Company);
+
+        if (!success)
+        {
+            ModelState.AddModelError(string.Empty, "Error al actualizar");
+            return Page();
+        }
 
         return RedirectToPage("Index");
     }

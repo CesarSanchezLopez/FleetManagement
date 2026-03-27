@@ -1,0 +1,35 @@
+﻿@page "{id:guid}"
+@model FleetManagement.Web.Pages.Drivers.DeleteModel
+@{
+    ViewData["Title"] = "Eliminar Conductor";
+}
+
+<div class="container mt-4">
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0">🗑️ Eliminar Conductor</h4>
+        </div>
+
+        <div class="card-body">
+
+            <p class="fs-5">
+                ¿Estás seguro de eliminar al conductor
+                <strong class="text-danger">@Model.Driver?.FirstName @Model.Driver?.LastName</strong>?
+            </p>
+
+            <div class="alert alert-warning">
+                ⚠ Esta acción no se puede deshacer.
+            </div>
+
+            <form method="post" class="d-flex gap-2">
+                <input type="hidden" asp-for="DriverId" />
+
+                <button type="submit" class="btn btn-danger">🗑️ Eliminar</button>
+                <a asp-page="Index" class="btn btn-outline-secondary">Cancelar</a>
+            </form>
+
+        </div>
+    </div>
+
+</div>

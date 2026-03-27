@@ -1,12 +1,12 @@
-﻿using FleetManagement.Domain.Entities;
+﻿using FleetManagement.Application.DTOs.Drivers;
 
 namespace FleetManagement.Application.Interfaces;
 
 public interface IDriverService
 {
-    Task<List<Driver>> GetAllAsync();
-    Task<Driver?> GetByIdAsync(Guid id);
-    Task CreateAsync(Driver driver);
-    Task UpdateAsync(Driver driver);
+    Task<List<DriverDto>> GetAllAsync();
+    Task<DriverDto?> GetByIdAsync(Guid id);
+    Task<DriverDto> CreateAsync(DriverDto dto);
+    Task UpdateAsync(DriverDto dto);
     Task DeleteAsync(Guid id);
 }

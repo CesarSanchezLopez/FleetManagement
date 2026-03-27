@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FleetManagement.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b63512a5d27f42d81f0809e4a4ab5973349bf34e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+92b22d74b143bfff45c0a3083ba1970a103e0c92")]
 [assembly: System.Reflection.AssemblyProductAttribute("FleetManagement.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FleetManagement.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
