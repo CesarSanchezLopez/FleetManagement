@@ -7,18 +7,16 @@
 <div class="container mt-4">
 
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="mb-0">🏢 Empresas</h2>
-
-        <a class="btn btn-primary" asp-page="Create">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
             + Nueva Empresa
-        </a>
+        </button>
     </div>
 
-    <!-- Card -->
+    <!-- Tabla -->
     <div class="card shadow-sm border-0">
         <div class="card-body p-0">
-
             <table class="table table-hover align-middle mb-0">
                 <thead class="table-light">
                     <tr>
@@ -28,7 +26,6 @@
                         <th class="text-end">Acciones</th>
                     </tr>
                 </thead>
-
                 <tbody>
                     @if (!Model.Companies.Any())
                     {
@@ -40,43 +37,165 @@
                     }
                     else
                     {
-                        @foreach (var company in Model.Companies)
+                        @foreach (var c in Model.Companies)
                         {
                             <tr>
-                                <td>
-                                    <strong>@company.Name</strong>
-                                </td>
-
-                                <td>
-                                    <span class="badge bg-secondary">
-                                        @company.Nit
-                                    </span>
-                                </td>
-
-                                <td>
-                                    @company.Address
-                                </td>
-
+                                <td><strong>@c.Name</strong></td>
+                                <td><span class="badge bg-secondary">@c.Nit</span></td>
+                                <td>@c.Address</td>
                                 <td class="text-end">
-                                    <a class="btn btn-sm btn-outline-warning me-1"
-                                       asp-page="Edit"
-                                       asp-route-id="@company.Id">
+                                    <button class="btn btn-sm btn-outline-warning me-1"
+                                            data-bs-toggle="modal" data-bs-target="#editModal"
+                                            onclick="fillEditModal('@c.Id', '@c.Name', '@c.Nit', '@c.Address')">
                                         ✏️
-                                    </a>
-
-                                    <a class="btn btn-sm btn-outline-danger"
-                                       asp-page="Delete"
-                                       asp-route-id="@company.Id">
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger"
+                                            data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                            onclick="fillDeleteModal('@c.Id', '@c.Name')">
                                         🗑️
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         }
                     }
                 </tbody>
-
             </table>
         </div>
     </div>
 
 </div>
+
+<!-- Modal Crear -->
+<div class="modal fade" id="createModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Crear Empresa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="post" asp-page-handler="Create">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="createName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="createName" name="Input.Name" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="createNit" class="form-label">NIT</label>
+                        <input type="text" class="form-control" id="createNit" name="Input.Nit" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="createAddress" class="form-label">Dirección</label>
+                        <input type="text" class="form-control" id="createAddress" name="Input.Address" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Editar -->
+<div class="modal fade" id="editModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title">Editar Empresa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="post" asp-page-handler="Edit">
+                <div class="modal-body">
+                    <input type="hidden" id="editId" name="Input.Id" />
+                    <div class="mb-3">
+                        <label for="editName" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" id="editName" name="Input.Name" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="editNit" class="form-label">NIT</label>
+                        <input type="text" class="form-control" id="editNit" name="Input.Nit" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="editAddress" class="form-label">Dirección</label>
+                        <input type="text" class="form-control" id="editAddress" name="Input.Address" required />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-warning">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Eliminar -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title">Eliminar Empresa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <form method="post" asp-page-handler="Delete">
+                <div class="modal-body text-center">
+                    <input type="hidden" id="deleteId" name="Input.Id" />
+                    <p>¿Estás seguro de eliminar esta empresa?</p>
+                    <p><strong id="deleteName"></strong></p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Toasts -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="toastContainer"></div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Llenar modal de editar
+        function fillEditModal(id, name, nit, address) {
+            document.getElementById("editId").value = id;
+            document.getElementById("editName").value = name;
+            document.getElementById("editNit").value = nit;
+            document.getElementById("editAddress").value = address;
+        }
+
+        // Llenar modal de eliminar
+        function fillDeleteModal(id, name) {
+            document.getElementById("deleteId").value = id;
+            document.getElementById("deleteName").textContent = name;
+        }
+
+        // Mostrar toast dinámico
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toastEl = document.createElement('div');
+            toastEl.className = `toast align-items-center text-bg-${type} border-0 show mb-2`;
+            toastEl.setAttribute('role', 'alert');
+            toastEl.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">${message}</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>`;
+            container.appendChild(toastEl);
+            setTimeout(() => toastEl.remove(), 3000);
+        }
+
+        // Mostrar toast desde TempData
+        @if (!string.IsNullOrEmpty(Model.ToastMessage))
+        {
+                <text>
+                showToast('@Model.ToastMessage', '@(Model.ToastType ?? "success")');
+                </text>
+        }
+    </script>
+}

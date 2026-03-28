@@ -1,114 +1,108 @@
-﻿<!DOCTYPE html>
+﻿@* _Layout.cshtml para Fleet Management SPA con modales *@
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fleet Management</title>
+    <title>@ViewData["Title"] - Fleet Management</title>
 
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         body {
             background-color: #f8f9fa;
         }
 
+        /* Sidebar */
         .sidebar {
             min-height: 100vh;
+            background-color: #343a40;
+            padding: 1rem;
         }
 
-        .sidebar .nav-link {
-            color: #adb5bd;
-            border-radius: 6px;
-            margin-bottom: 5px;
-            transition: 0.2s;
+            .sidebar .nav-link {
+                color: #adb5bd;
+                border-radius: 6px;
+                margin-bottom: 5px;
+                padding: 10px 15px;
+                transition: 0.2s;
+            }
+
+                .sidebar .nav-link:hover {
+                    background-color: #495057;
+                    color: #fff;
+                }
+
+                .sidebar .nav-link.active {
+                    background-color: #0d6efd;
+                    color: #fff;
+                }
+
+        /* Topbar */
+        .topbar {
+            background-color: #fff;
+            border-bottom: 1px solid #dee2e6;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .sidebar .nav-link:hover {
-            background-color: #495057;
-            color: #fff;
-        }
-
-        .sidebar .nav-link.active {
-            background-color: #0d6efd;
-            color: #fff;
-        }
-
+        /* Main content */
         .content {
             padding: 20px;
         }
 
-        .topbar {
-            background: #fff;
-            border-bottom: 1px solid #dee2e6;
-            padding: 10px 20px;
+        /* Card & table styling */
+        .card {
+            border-radius: 10px;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
         }
     </style>
 </head>
 
 <body>
-
     <div class="container-fluid">
         <div class="row">
 
-            <!-- SIDEBAR -->
-            <nav class="col-md-2 bg-dark sidebar p-3">
-
+            <!-- Sidebar -->
+            <nav class="col-md-2 sidebar d-none d-md-block">
                 <h4 class="text-white mb-4">🚛 Fleet</h4>
-
                 <ul class="nav flex-column">
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">📊 Dashboard</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Companies">🏢 Companies</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Drivers">👨‍✈️ Drivers</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Vehicles">🚗 Vehicles</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Fuel">⛽ Fuel</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Maintenance">🛠️ Maintenance</a>
-                    </li>
-
+                    <li class="nav-item"><a class="nav-link" asp-page="/Index">📊 Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="/Companies/Index">🏢 Empresas</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="/Drivers/Index">👨‍✈️ Conductores</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="/Vehicles/Index">🚗 Vehículos</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="/Fuel/Index">⛽ Combustible</a></li>
+                    <li class="nav-item"><a class="nav-link" asp-page="/Maintenance/Index">🛠️ Mantenimiento</a></li>
                 </ul>
-
             </nav>
 
-            <!-- CONTENIDO -->
-            <main class="col-md-10">
-
-                <!-- TOPBAR -->
-                <div class="topbar d-flex justify-content-between align-items-center">
+            <!-- Main content -->
+            <main class="col-md-10 ms-sm-auto px-md-4">
+                <!-- Topbar -->
+                <div class="topbar">
                     <h5 class="mb-0">@ViewData["Title"]</h5>
-
-                    <div>
-                        <span class="text-muted">👤 Admin</span>
-                    </div>
+                    <div><span class="text-muted">👤 Admin</span></div>
                 </div>
 
-                <!-- CONTENT -->
+                <!-- Content -->
                 <div class="content">
                     @RenderBody()
                 </div>
-
             </main>
 
         </div>
     </div>
 
+    <!-- Scripts section -->
     @RenderSection("Scripts", required: false)
 
+    <!-- Bootstrap JS Bundle (Popper incluido, necesario para modales) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

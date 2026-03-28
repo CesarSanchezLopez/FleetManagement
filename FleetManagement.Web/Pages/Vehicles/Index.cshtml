@@ -6,59 +6,149 @@
 
 <div class="container mt-4">
 
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between mb-3">
         <h2>🚗 Vehículos</h2>
-        <a class="btn btn-primary" asp-page="Create">+ Nuevo Vehículo</a>
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+            + Nuevo
+        </button>
     </div>
 
-    <div class="card shadow-sm border-0">
-        <div class="card-body p-0">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-light">
+    <div class="card shadow-sm">
+        <table class="table mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Placa</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Año</th>
+                    <th>VIN</th>
+                    <th>Empresa</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var v in Model.Vehicles)
+                {
                     <tr>
-                        <th>Matrícula</th>
-                        <th>Marca</th>
-                        <th>Modelo</th>
-                        <th>Año</th>
-                        <th>VIN</th>
-                        <th>Empresa</th>
-                        <th class="text-end">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (!Model.Vehicles.Any())
-                    {
-                        <tr>
-                            <td colspan="7" class="text-center text-muted py-4">
-                                No hay vehículos registrados.
-                            </td>
-                        </tr>
-                    }
-                    else
-                    {
-                        @foreach (var vehicle in Model.Vehicles)
-                        {
-                            <tr>
-                                <td>@vehicle.LicensePlate</td>
-                                <td>@vehicle.Brand</td>
-                                <td>@vehicle.Model</td>
-                                <td>@vehicle.Year</td>
-                                <td>@vehicle.VIN</td>
-                                <td>@vehicle.CompanyName</td>
-                                <td class="text-end">
-                                    <a class="btn btn-sm btn-outline-warning me-1"
-                                       asp-page="Edit"
-                                       asp-route-id="@vehicle.Id">✏️</a>
-                                    <a class="btn btn-sm btn-outline-danger"
-                                       asp-page="Delete"
-                                       asp-route-id="@vehicle.Id">🗑️</a>
-                                </td>
-                            </tr>
-                        }
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
+                        <td><strong>@v.LicensePlate</strong></td>
+                        <td>@v.Brand</td>
+                        <td>@v.Model</td>
+                        <td>@v.Year</td>
+                        <td>@v.VIN</td>
+                        <td>@v.CompanyName</td>
+                        <td class="text-end">
 
+                            <button class="btn btn-sm btn-warning"
+                                    onclick="edit('@v.Id','@v.LicensePlate','@v.Brand','@v.Model','@v.Year','@v.VIN','@v.CompanyId')">
+                                ✏️
+                            </button>
+
+                            <button class="btn btn-sm btn-danger"
+                                    onclick="del('@v.Id','@v.LicensePlate')">
+                                🗑️
+                            </button>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
+
+<!-- CREATE MODAL -->
+<div class="modal fade" id="createModal">
+    <div class="modal-dialog">
+        <form method="post" asp-page-handler="Create" class="modal-content">
+            <div class="modal-body">
+                <input asp-for="Input.LicensePlate" class="form-control mb-2" placeholder="Placa" />
+                <input asp-for="Input.Brand" class="form-control mb-2" placeholder="Marca" />
+                <input asp-for="Input.Model" class="form-control mb-2" placeholder="Modelo" />
+                <input asp-for="Input.Year" type="number" class="form-control mb-2" placeholder="Año" />
+                <input asp-for="Input.VIN" class="form-control mb-2" placeholder="VIN" />
+
+                <select asp-for="Input.CompanyId" class="form-select">
+                    @foreach (var c in Model.Companies)
+                    {
+                        <option value="@c.Id">@c.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- EDIT MODAL -->
+<div class="modal fade" id="editModal">
+    <div class="modal-dialog">
+        <form method="post" asp-page-handler="Edit" class="modal-content">
+
+            <input type="hidden" asp-for="Input.Id" id="eId" />
+
+            <div class="modal-body">
+                <input id="eP" asp-for="Input.LicensePlate" class="form-control mb-2" />
+                <input id="eB" asp-for="Input.Brand" class="form-control mb-2" />
+                <input id="eM" asp-for="Input.Model" class="form-control mb-2" />
+                <input id="eY" asp-for="Input.Year" type="number" class="form-control mb-2" />
+                <input id="eV" asp-for="Input.VIN" class="form-control mb-2" />
+
+                <select id="eC" asp-for="Input.CompanyId" class="form-select">
+                    @foreach (var c in Model.Companies)
+                    {
+                        <option value="@c.Id">@c.Name</option>
+                    }
+                </select>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-warning">Actualizar</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal fade" id="deleteModal">
+    <div class="modal-dialog">
+        <form method="post" asp-page-handler="Delete" class="modal-content">
+
+            <input type="hidden" asp-for="Input.Id" id="dId" />
+
+            <div class="modal-body">
+                <p>Eliminar vehículo <strong id="dName"></strong> ?</p>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-danger">Eliminar</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+<script>
+function edit(id,p,b,m,y,v,c){
+    eId.value=id;
+    eP.value=p;
+    eB.value=b;
+    eM.value=m;
+    eY.value=y;
+    eV.value=v;
+    eC.value=c;
+    new bootstrap.Modal(editModal).show();
+}
+
+function del(id,name){
+    dId.value=id;
+    dName.innerText=name;
+    new bootstrap.Modal(deleteModal).show();
+}
+</script>
+}
