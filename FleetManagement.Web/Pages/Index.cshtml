@@ -1,10 +1,80 @@
 ﻿@page
-@model IndexModel
+@model FleetManagement.Web.Pages.IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="row g-4">
+
+    <!-- Tarjetas -->
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h6 class="card-title">Empresas</h6>
+                <p class="card-text">@Model.TotalCompanies</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h6 class="card-title">Vehículos</h6>
+                <p class="card-text">@Model.TotalVehicles</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h6 class="card-title">Conductores</h6>
+                <p class="card-text">@Model.TotalDrivers</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <h6 class="card-title">Mantenimientos</h6>
+                <p class="card-text">@Model.TotalMaintenance</p>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+<!-- Gráfico de ejemplo -->
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card p-3">
+            <canvas id="vehiclesChart" height="100"></canvas>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const ctx = document.getElementById('vehiclesChart').getContext('2d');
+        const vehiclesChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Empresa A', 'Empresa B', 'Empresa C', 'Empresa D'],
+                datasets: [{
+                    label: 'Vehículos',
+                    data: [5, 8, 3, 6],
+                    backgroundColor: '#2563eb'
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+    </script>
+}

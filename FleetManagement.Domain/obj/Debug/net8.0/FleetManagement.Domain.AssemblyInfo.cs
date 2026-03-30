@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FleetManagement.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3c8b813c77099c43e93ceae00beceee785525575")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c17fefdde8b4958456d22fd6bbd1a862d82f1a84")]
 [assembly: System.Reflection.AssemblyProductAttribute("FleetManagement.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FleetManagement.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
