@@ -41,6 +41,27 @@ builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 // (Opcional: Fuel, Maintenance, etc., si los tienes)
 // builder.Services.AddScoped<IFuelService, FuelService>();
 // builder.Services.AddScoped<IFuelRepository, FuelRepository>();
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy("AllowAll",
+//        policy => policy
+//            .AllowAnyOrigin()
+//            .AllowAnyHeader()
+//            .AllowAnyMethod());
+//});
+
+// Program.cs en API
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
+
 
 // Swagger / OpenAPI
 builder.Services.AddEndpointsApiExplorer();
@@ -68,6 +89,8 @@ else
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowAll");
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
