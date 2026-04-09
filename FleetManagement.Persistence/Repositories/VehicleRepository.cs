@@ -31,9 +31,7 @@ public class VehicleRepository : IVehicleRepository
     // Obtener todos los vehículos
     public async Task<List<Vehicle>> GetAllAsync()
     {
-        return await _context.Vehicles
-            .Include(v => v.Company) // opcional
-            .ToListAsync();
+        return await _context.Vehicles.ToListAsync();
     }
 
     // Actualizar un vehículo

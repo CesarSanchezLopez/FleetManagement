@@ -24,6 +24,11 @@ builder.Services.AddHttpClient<VehiclesService>(client =>
     client.BaseAddress = new Uri(apiBaseUrl);
 });
 
+builder.Services.AddHttpClient<MaintenancesService>(client =>
+{
+    client.BaseAddress = new Uri(apiBaseUrl);
+});
+
 // Habilitar CORS para que Razor pueda consumir la API si está en otro puerto
 builder.Services.AddCors(options =>
 {
