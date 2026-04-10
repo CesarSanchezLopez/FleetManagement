@@ -38,6 +38,10 @@ builder.Services.AddScoped<IDriverRepository, DriverRepository>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 
+// Maintenance
+builder.Services.AddScoped<IMaintenanceService, MaintenanceService>();
+builder.Services.AddScoped<IMaintenanceRepository, MaintenanceRepository>();
+
 // (Opcional: Fuel, Maintenance, etc., si los tienes)
 // builder.Services.AddScoped<IFuelService, FuelService>();
 // builder.Services.AddScoped<IFuelRepository, FuelRepository>();

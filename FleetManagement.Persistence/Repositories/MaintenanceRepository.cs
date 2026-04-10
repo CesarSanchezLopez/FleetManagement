@@ -29,7 +29,10 @@ public class MaintenanceRepository : IMaintenanceRepository
 
     public async Task<List<Maintenance>> GetAllAsync()
     {
-        return await _context.Maintenances.AsNoTracking().ToListAsync();
+        return await _context.Maintenances
+            .AsNoTracking()
+            .Include(m => m.Vehicle) // Ensure Vehicle is included
+            .ToListAsync();
     }
 
     public async Task UpdateAsync(Maintenance maintenance)

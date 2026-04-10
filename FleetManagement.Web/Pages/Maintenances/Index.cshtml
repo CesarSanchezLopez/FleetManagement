@@ -1,0 +1,194 @@
+@page
+@model FleetManagement.Web.Pages.Maintenances.IndexModel
+@{
+    ViewData["Title"] = "Gestión de Mantenimientos";
+}
+
+<h1>Gestión de Mantenimientos</h1>
+
+<!-- Toast para mensajes -->
+@if (TempData["ToastMessage"] != null)
+{
+    <div class="alert alert-@TempData["ToastType"]" role="alert">
+        @TempData["ToastMessage"]
+    </div>
+}
+
+<!-- Botón para abrir el modal de creación -->
+<button class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createModal">Crear Mantenimiento</button>
+
+<!-- Tabla de mantenimientos -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Vehículo</th>
+            <th>Tipo</th>
+            <th>Descripción</th>
+            <th>Costo</th>
+            <th>Fecha</th>
+            <th>Próxima Fecha</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var maintenance in Model.Maintenances)
+        {
+            <tr>
+                <td>@maintenance.VehicleLicensePlate</td> <!-- Mostrar la matrícula del vehículo -->
+                <td>@maintenance.Type</td> <!-- Mostrar el tipo de mantenimiento -->
+                <td>@maintenance.Description</td> <!-- Mostrar la descripción -->
+                <td>@maintenance.Cost.ToString("C")</td> <!-- Mostrar el costo en formato moneda -->
+                <td>@maintenance.Date.ToShortDateString()</td> <!-- Mostrar la fecha -->
+                <td>@maintenance.NextDueDate?.ToShortDateString()</td> <!-- Mostrar la próxima fecha (si existe) -->
+                <td>
+                    <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal"
+                            onclick="setEditModalValues('@maintenance.Id', '@maintenance.VehicleId', '@maintenance.Type', '@maintenance.Description', '@maintenance.Cost', '@maintenance.Date', '@maintenance.NextDueDate')">
+                        Editar
+                    </button>
+                    <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                            onclick="setDeleteModalValues('@maintenance.Id')">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal para crear mantenimiento -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Create">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createModalLabel">Crear Mantenimiento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="VehicleId" class="form-label">Vehículo</label>
+                        <select class="form-select" id="VehicleId" name="Input.VehicleId" required>
+                            <option value="">Seleccione un vehículo</option>
+                            @foreach (var vehicle in Model.Vehicles)
+                            {
+                                <option value="@vehicle.Id">@vehicle.LicensePlate</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Type" class="form-label">Tipo</label>
+                        <input type="text" class="form-control" id="Type" name="Input.Type" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Description" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="Description" name="Input.Description" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Cost" class="form-label">Costo</label>
+                        <input type="number" class="form-control" id="Cost" name="Input.Cost" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Date" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="Date" name="Input.Date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="NextDueDate" class="form-label">Próxima Fecha</label>
+                        <input type="date" class="form-control" id="NextDueDate" name="Input.NextDueDate">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Crear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para editar mantenimiento -->
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Edit">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Editar Mantenimiento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="EditId" name="Input.Id">
+                    <div class="mb-3">
+                        <label for="VehicleId" class="form-label">Vehículo</label>
+                        <select class="form-select" id="VehicleId" name="Input.VehicleId" required>
+                            <option value="">Seleccione un vehículo</option>
+                            @foreach (var vehicle in Model.Vehicles)
+                            {
+                                <option value="@vehicle.Id">@vehicle.LicensePlate</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="EditType" class="form-label">Tipo</label>
+                        <input type="text" class="form-control" id="EditType" name="Input.Type" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="EditDescription" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="EditDescription" name="Input.Description" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="EditCost" class="form-label">Costo</label>
+                        <input type="number" class="form-control" id="EditCost" name="Input.Cost" step="0.01" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="EditDate" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="EditDate" name="Input.Date" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="EditNextDueDate" class="form-label">Próxima Fecha</label>
+                        <input type="date" class="form-control" id="EditNextDueDate" name="Input.NextDueDate">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para eliminar mantenimiento -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Delete">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Eliminar Mantenimiento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="DeleteId" name="Input.Id">
+                    <p>¿Estás seguro de que deseas eliminar este mantenimiento?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function setEditModalValues(id, vehicleId, type, description, cost, date, nextDueDate) {
+        document.getElementById('EditId').value = id;
+        document.getElementById('EditType').value = type;
+        document.getElementById('EditDescription').value = description;
+        document.getElementById('EditCost').value = cost;
+        document.getElementById('EditDate').value = date;
+        document.getElementById('EditNextDueDate').value = nextDueDate;
+    }
+
+    function setDeleteModalValues(id) {
+        document.getElementById('DeleteId').value = id;
+    }
+</script>
