@@ -1,33 +1,47 @@
-# Consulte https://aka.ms/customizecontainer para aprender a personalizar su contenedor de depuración y cómo Visual Studio usa este Dockerfile para compilar sus imágenes para una depuración más rápida.
-
-# Esta fase se usa cuando se ejecuta desde VS en modo rápido (valor predeterminado para la configuración de depuración)
+# =========================
+# Base runtime
+# =========================
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER $APP_UID
 WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
 
+# Render usa el puerto 10000
+ENV ASPNETCORE_URLS=http://+:10000
 
-# Esta fase se usa para compilar el proyecto de servicio
+EXPOSE 10000
+
+# =========================
+# Build
+# =========================
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+
 COPY ["FleetManagement.API/FleetManagement.API.csproj", "FleetManagement.API/"]
 COPY ["FleetManagement.Application/FleetManagement.Application.csproj", "FleetManagement.Application/"]
 COPY ["FleetManagement.Domain/FleetManagement.Domain.csproj", "FleetManagement.Domain/"]
 COPY ["FleetManagement.Persistence/FleetManagement.Persistence.csproj", "FleetManagement.Persistence/"]
-RUN dotnet restore "./FleetManagement.API/FleetManagement.API.csproj"
+
+RUN dotnet restore "FleetManagement.API/FleetManagement.API.csproj"
+
 COPY . .
 WORKDIR "/src/FleetManagement.API"
-RUN dotnet build "./FleetManagement.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
-# Esta fase se usa para publicar el proyecto de servicio que se copiará en la fase final.
+RUN dotnet build "FleetManagement.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
+
+# =========================
+# Publish
+# =========================
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./FleetManagement.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
-# Esta fase se usa en producción o cuando se ejecuta desde VS en modo normal (valor predeterminado cuando no se usa la configuración de depuración)
+RUN dotnet publish "FleetManagement.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+
+# =========================
+# Final image
+# =========================
 FROM base AS final
 WORKDIR /app
+
 COPY --from=publish /app/publish .
+
 ENTRYPOINT ["dotnet", "FleetManagement.API.dll"]
